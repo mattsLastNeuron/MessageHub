@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include("../dbConn.php");
+
 if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     ?>
 
@@ -10,9 +12,51 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Template</title>
+        <title>Summary</title>
         <link rel="stylesheet" href="../style.css">
         <link rel="shortcut icon" href="../Images/messageHubLogo.png" type="image/x-icon">
+        <style>
+            .Crt {
+                background-color: white;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                border-radius: 0.25em;
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
+
+            .row {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                gap: 2rem;
+                color: #de985d;
+            }
+
+            .sumNum {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                font-size: 6rem;
+            }
+
+            .sumNum img {
+                width: 100px;
+                filter: invert(67%) sepia(55%) saturate(437%) hue-rotate(339deg) brightness(88%) contrast(98%);
+            }
+
+            @media screen and (max-width: 768px){
+                .row {
+                    flex-wrap: wrap;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -106,15 +150,117 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                     <a href="message.php" class="logoLink"><img src="../Images/MessagehubBlack.png" alt=""
                             width="100px"></a>
 
-                    <h1>Template</h1>
+                    <h1>Message Summary</h1>
                 </div>
 
                 <div class="content">
-                    <h1>Content</h1>
+                    <div class="Crt">
+                        <h1 style="text-align: center">Message Summary</h1>
+                        <div class="row">
+                            <div class="sum">
+                                <h2>Messages Received</h2>
 
-                    <img src="../Images/messageHubLogo.png" alt="">
-                    <img src="../Images/messageHubLogo.png" alt="">
-                    <img src="../Images/messageHubLogo.png" alt="">
+                                <div class="sumNum">
+                                    <img src="../Images/envelope.svg" alt="">
+
+                                    <script>
+                                        function updateCounter1(count) {
+                                            document.getElementById('counter1').innerText = count;
+                                        }
+
+                                        // Use PHP to generate JavaScript code
+                                        <?php
+                                        $ID = $_SESSION['ID'];
+                                        $num = mysqli_query($conn, "SELECT COUNT(*) 
+                                            FROM messagedata
+                                            WHERE messagedata.receiver_id = $ID");
+
+                                        while ($n = mysqli_fetch_array($num)) {
+                                            $targetNumber = $n['COUNT(*)'];
+                                        }
+
+
+                                        for ($i = 0; $i <= $targetNumber; $i++) {
+                                            echo "setTimeout(function() { updateCounter1($i); }, " . ($i * 100) . ");";
+                                        }
+                                        ?>
+                                    </script>
+
+                                    <p><span id="counter1"></span></p>
+
+                                </div>
+                            </div>
+
+                            <div class="sum">
+                                <h2>Unread Messages</h2>
+
+                                <div class="sumNum">
+                                    <img src="../Images/unread.svg" alt="">
+
+                                    <script>
+                                        function updateCounter2(count) {
+                                            document.getElementById('counter2').innerText = count;
+                                        }
+
+                                        // Use PHP to generate JavaScript code
+                                        <?php
+                                        $ID = $_SESSION['ID'];
+                                        $num = mysqli_query($conn, "SELECT COUNT(*) 
+                                            FROM messagedata
+                                            WHERE messagedata.receiver_id = $ID AND messagedata.is_read = 0");
+
+                                        while ($n = mysqli_fetch_array($num)) {
+                                            $targetNumber = $n['COUNT(*)'];
+                                        }
+
+
+                                        for ($i = 0; $i <= $targetNumber; $i++) {
+                                            echo "setTimeout(function() { updateCounter2($i); }, " . ($i * 100) . ");";
+                                        }
+                                        ?>
+                                    </script>
+
+                                    <p><span id="counter2"></span></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="sum">
+                                <h2>Sent Messages</h2>
+
+                                <div class="sumNum">
+                                    <img src="../Images/sent.svg" alt="">
+
+                                    <script>
+                                        function updateCounter3(count) {
+                                            document.getElementById('counter3').innerText = count;
+                                        }
+
+                                        // Use PHP to generate JavaScript code
+                                        <?php
+                                        $ID = $_SESSION['ID'];
+                                        $num = mysqli_query($conn, "SELECT COUNT(*) 
+                                            FROM messagedata
+                                            WHERE messagedata.sender_id = $ID");
+
+                                        while ($n = mysqli_fetch_array($num)) {
+                                            $targetNumber = $n['COUNT(*)'];
+                                        }
+
+
+                                        for ($i = 0; $i <= $targetNumber; $i++) {
+                                            echo "setTimeout(function() { updateCounter3($i); }, " . ($i * 100) . ");";
+                                        }
+                                        ?>
+                                    </script>
+
+                                    <p><span id="counter3"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -176,6 +322,9 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
         </div>
 
         <script src="../script.js"></script>
+        <script>
+
+        </script>
     </body>
 
     </html>
