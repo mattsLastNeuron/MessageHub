@@ -141,11 +141,6 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                 width: 23.5px;
             }
 
-            #placeholder {
-                width: 20rem;
-                /* Set the same height as the div */
-            }
-
             .selectRead {
                 background-color: white;
                 width: 20rem;
@@ -443,9 +438,6 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
 
                     <div class="selectReadIcon" id="selectReadIcon" onclick="showRead(this)">
                         <img src="../Images/read.png" alt="read">
-                    </div>
-
-                    <div id="placeholder">
                     </div>
 
                     <div class="selectRead" id="selectRead">
