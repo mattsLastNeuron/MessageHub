@@ -1,0 +1,273 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  display: inline-block;
+  font-family: Helvetica, Sans-Serif;
+}
+
+.crt {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.headAndCon {
+  height: 100%;
+  width: 85%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logoLink{
+  width: 100%;
+  text-align: center;
+}
+
+.userInfo, .userInfoM {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 5px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  background-color: #de985d;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  text-align: center;
+}
+
+.sidebarLinks,
+.sidebarAdmin {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  padding: 0rem 1rem 0rem 2rem;
+}
+
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 10px;
+  padding: 12px;
+  border: 3px solid #de985d;
+  transition: 0.1s ease-in-out;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+}
+
+.sidebarLink:hover {
+  border: 3px solid white;
+}
+
+.sidebarLink:active {
+  transform: translate(0px, 5px);
+}
+
+.menuIcon {
+  width: 23.5px;
+  filter: invert(99%) sepia(80%) saturate(0%) hue-rotate(33deg) brightness(109%)
+    contrast(101%);
+}
+
+.logoutForm{
+  width: 100%;
+}
+
+.logoutBtn, .logout {
+  width: 100%;
+  text-decoration: none;
+  color: #de985d;
+  background-color: white;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 1rem;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logoutBtn:hover, .logout:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.logoutBtn:active, .logout:active {
+  transform: translate(0px, 5px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #e0f2fe;
+  box-shadow: inset 0 5px 5px #e2e8f0;
+  padding: 1rem 2rem;
+}
+
+#menu-toggle {
+  display: none;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  color: black;
+  padding: 5px;
+  border: none;
+  font-size: 1.5em;
+}
+
+.menuLinks {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.menuLink,
+.menuLink:visited {
+  text-decoration: none;
+  padding: 1em;
+  color: black;
+}
+
+.menuLink:hover {
+  background-color: black;
+  color: white;
+}
+
+.menuLink:active {
+  background-color: white;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.menu-toggle:hover {
+  background-color: white;
+  color: black;
+}
+
+.menu-toggle:active {
+  background-color: white;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+/* Creating a side menu off the webpage to be called into view by click event */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: -400px;
+  width: 300px;
+  height: 100%;
+  background-color: #de985d;
+  list-style: none;
+  margin: 0;
+  padding: 60px 20px 20px;
+  transition: transform 0.3s ease-in-out;
+  background-color: #de985d;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+/* Moves the menu into view when activated */
+#menu-toggle.active + .menu {
+  transform: translateX(400px);
+}
+
+#menu-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2em;
+}
+
+.menu-close:hover {
+  background-color: white;
+  color: black;
+}
+
+.menu-close:active {
+  background-color: white;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebarAdmin {
+    padding: 0;
+  }
+
+  .sidebarLinks, .sidebarAdmin {
+    padding: 0;
+  }
+
+  .headAndCon {
+    width: 100%;
+  }
+
+  .userInfo {
+    display: none;
+  }
+
+  .header h1 {
+    display: none;
+  }
+
+  #menu-toggle {
+    display: inline;
+  }
+
+  .messageText {
+    font-size: 1.3rem;
+  }
+}
