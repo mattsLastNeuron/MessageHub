@@ -221,6 +221,53 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                 border-radius: 5px;
             }
 
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 150;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.7);
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal-content {
+                background-color: white;
+                padding: 20px;
+                border: 1px solid #888;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .confirm-btn,
+            .cancel-btn {
+                background: white;
+                color: #de985d;
+                border: 2px solid #de985d;
+                font-size: 1rem;
+                padding: .5rem;
+                text-shadow: none;
+                transition: 0.3s ease-in-out;
+            }
+
+            .confirm-btn:hover,
+            .cancel-btn:hover {
+                background-color: #de985d;
+                color: white;
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
+
+            .confirm-btn:active,
+            .cancel-btn:active {
+                transform: translate(0px, 10px);
+            }
+
+
             @media screen and (max-width: 768px) {
                 .messageText {
                     font-size: 1.3rem;
@@ -393,7 +440,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                             </p>
                         <?php } ?>
 
-                        <form method="post" action="delete.php">
+                        <form method="post" action="delete.php" onsubmit="return showConfirmation()">
                             <select name="delete">
                                 <option value="" disabled selected>--Select Message--</option>
                                 <?php
@@ -417,6 +464,14 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                             </div>
                         </form>
                     </div>
+
+                    <div id="confirmationModal" class="modal">
+                            <div class="modal-content">
+                                <p style="color: #A94442">Are you sure you want to delete this notice?</p>
+                                <button class="confirm-btn" onclick="confirmAction()">Yes</button>
+                                <button class="cancel-btn" onclick="cancelAction()">No</button>
+                            </div>
+                        </div>
                 </div>
             </div>
 
@@ -494,6 +549,21 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                 Icon.style.display = 'flex';
 
                 openDiv.style.display = 'none';
+            }
+
+            function showConfirmation() {
+                var modal = document.getElementById("confirmationModal");
+                modal.style.display = "flex";
+                return false; // Prevent form submission
+            }
+
+            function confirmAction() {
+                document.forms[0].submit();
+            }
+
+            function cancelAction() {
+                var modal = document.getElementById("confirmationModal");
+                modal.style.display = "none";
             }
         </script>
     </body>
