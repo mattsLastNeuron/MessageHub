@@ -27,10 +27,25 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(204deg,
-          rgba(224, 242, 254, 1) 0%,
-          rgb(222, 152, 93) 100%);
+      background: linear-gradient(204deg, #6d9db9, #de985d, #b3c1cb);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
     }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
 
     .loginCrt {
       display: flex;
