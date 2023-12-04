@@ -12,7 +12,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Search Results</title>
         <link rel="stylesheet" href="../style.css">
-        <link rel="shortcut icon" href="../Images/messageHubLogo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../Images/messageHubIcon.png" type="image/x-icon">
         <style>
             table {
                 width: 100%;

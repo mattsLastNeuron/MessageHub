@@ -14,7 +14,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Create Message</title>
         <link rel="stylesheet" href="../style.css">
-        <link rel="shortcut icon" href="../Images/messageHubLogo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../Images/messageHubIcon.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <style>
             * {
@@ -254,7 +254,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                                 Message Search
                                 </a>
     
-                                <a href='delete.php' class='sidebarLink'>
+                                <a href='deleteNotice.php' class='sidebarLink'>
                                 <img class='menuIcon' src='../Images/trash.svg' alt='trash'>
                                 Delete Notice
                                 </a>
@@ -370,7 +370,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                             Message Search
                             </a>
 
-                            <a href='delete.php' class='sidebarLink'>
+                            <a href='deleteNotice.php' class='sidebarLink'>
                             <img class='menuIcon' src='../Images/trash.svg' alt='trash'>
                             Delete Notice
                             </a>
