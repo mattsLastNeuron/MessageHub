@@ -99,7 +99,7 @@
             display: inline-block;
             box-sizing: border-box;
             outline: none;
-            border: none;
+            border: 2px solid transparent;
             border-radius: 24px;
             font-size: 1rem;
             background-color: gainsboro;

@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-include("../dbConn.php");
-
 if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     ?>
 
@@ -12,82 +10,61 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Search</title>
+        <title>Search Results</title>
         <link rel="stylesheet" href="../style.css">
         <link rel="shortcut icon" href="../Images/messageHubLogo.png" type="image/x-icon">
         <style>
-            .Crt {
+            table {
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding-top: .5rem;
+            }
+
+            td {
+                padding: .5rem;
+            }
+
+            .default {
+                text-align: center;
+            }
+
+            .message,
+            .notice {
                 background-color: white;
-                width: 40%;
-                padding: 2rem;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                border-radius: 0.25em;
+                gap: .5rem;
+                border-radius: 10px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+                transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+                border-left: solid #de985d 5px;
+            }
+
+            .message:hover {
                 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
             }
 
-            .Crt form {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
+            .fromTitle {
+                border-bottom: 1px solid #de985d;
+            }
+
+            .date {
+                text-align: right;
+            }
+
+            .messageText {
                 width: 100%;
+                word-wrap: break-word;
+                font-size: larger;
             }
 
-            input[type="text"],
-            input[type="password"] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                box-sizing: border-box;
-                outline: none;
-                border: 2px solid transparent;
-                border-radius: 24px;
-                font-size: 1rem;
-                background-color: gainsboro;
-            }
-
-            input[type="text"]:focus,
-            input[type="password"]:focus {
-                border: 2px rgb(222, 152, 93) solid;
-            }
-
-            .Btns {
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-            }
-
-            .Btns input {
-                background: white;
-                color: #de985d;
-                border-style: solid;
-                border-color: #de985d;
-                height: 50px;
-                width: 100px;
-                text-shadow: none;
-                transition: 0.3s ease-in-out;
-            }
-
-            .Btns input:hover {
-                background-color: #de985d;
-                color: white;
-                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            }
-
-            .Btns input:active {
-                transform: translate(0px, 10px);
-            }
-
-            .error {
-                background-color: #F2DEDE;
-                color: #A94442;
-                padding: 10px;
-                width: 95%;
-                border-radius: 5px;
-            }
         </style>
     </head>
 
@@ -182,30 +159,47 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                     <a href="message.php" class="logoLink"><img src="../Images/MessagehubBlack.png" alt=""
                             width="100px"></a>
 
-                    <h1>Message Search</h1>
+                    <h1>Search Results</h1>
                 </div>
 
                 <div class="content">
-                    <div class="Crt">
-                        <h1>Message Search</h1>
+                    <h1>Results</h1>
 
-                        <?php if (isset($_GET['error'])) { ?>
-                            <p class="error">
-                                <?php echo $_GET['error']; ?>
-                            </p>
-                        <?php } ?>
+                    <table>
+                    <?php
 
-                        <form action="searchPro.php" method="post">
-                            <input type="text" placeholder="Search" name="search" />
+                    if (isset($_SESSION['search_results'])) {
+                        // Display results
+                        foreach ($_SESSION['search_results'] as $row) {
+                            ?>
+                            <tr class="message">
+                                    <td class="fromTitle">
+                                        <h3><span style="color: #de985d">FROM:</span> @
+                                            <?php echo $row['UserName'] ?>
+                                        </h3>
+                                    </td>
+                                    <td class="fromTitle">
+                                        <h3><span style="color: #de985d">SUBJECT:</span>
+                                            <?php echo $row['title'] ?>
+                                        </h3>
+                                    </td>
+                                    <td class="messageText">
+                                        <?php echo $row['message'] ?>
+                                    </td>
+                                    <td class="date">
+                                        Sent on:
+                                        <?php echo $row['sent_date'] ?>
+                                    </td>
+                                </tr>
+                       <?php }
+                        unset($_SESSION['search_results']);
+                    } else {
+                        echo "No results found.";
+                    }
 
-                            <div class="Btns">
-                                <input type="submit" value="Search">
-                                <input type="reset" value="Clear">
-                            </div>
-                        </form>
-                    </div>
+                    ?>
+                    </table>
                 </div>
-
             </div>
 
             <div class="sidebar">
