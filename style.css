@@ -1,7 +1,10 @@
+
+
 * {
   padding: 0%;
   margin: 0%;
   box-sizing: border-box;
+  font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 body,
@@ -18,9 +21,10 @@ html {
   flex-direction: row-reverse;
 }
 
-.headAndCon {
+#headAndCon {
   height: 100%;
-  width: 85%;
+  width: 80%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .header {
@@ -29,6 +33,10 @@ html {
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
+}
+
+.header h1 {
+  width: 15rem;
 }
 
 .logoLink{
@@ -41,9 +49,10 @@ html {
   flex-direction: row;
   align-self: center;
   gap: 5px;
+  padding: 2rem 1rem;
 }
 
-.sidebar {
+#sidebar {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -51,7 +60,30 @@ html {
   background-color: #de985d;
   position: sticky;
   top: 0;
-  z-index: 100;
+  overflow: hidden;
+  width: 20%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sideTop {
+  display: flex;
+  flex-direction: row;
+}
+
+#menu-Close {
+  display: none;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  color: black;
+  padding: 5px;
+  border: none;
+  font-size: 1.5em;
+  width: 15rem;
 }
 
 .logo {
@@ -133,7 +165,7 @@ html {
 }
 
 #menu-toggle {
-  display: none;
+  display: inline;
   background: none;
 	color: inherit;
 	border: none;
@@ -145,104 +177,22 @@ html {
   padding: 5px;
   border: none;
   font-size: 1.5em;
+  width: 5rem;
+  margin: 0 3rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.menuLinks {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  list-style: none;
-  text-align: left;
-  font-size: larger;
-  font-weight: bold;
-  padding: 1rem;
-}
-
-.menuLink,
-.menuLink:visited {
-  text-decoration: none;
-  padding: 1em;
-  color: black;
-}
-
-.menuLink:hover {
-  background-color: black;
+#menu-toggle:hover, #menu-Close:hover {
+  background-color: #de985d;
   color: white;
 }
 
-.menuLink:active {
-  background-color: white;
-  color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-
-.menu-toggle:hover {
-  background-color: white;
-  color: black;
-}
-
-.menu-toggle:active {
-  background-color: white;
-  color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-
-/* Creating a side menu off the webpage to be called into view by click event */
-.menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: -400px;
-  width: 300px;
-  height: 100%;
-  background-color: #de985d;
-  list-style: none;
-  margin: 0;
-  padding: 60px 20px 20px;
-  transition: transform 0.3s ease-in-out;
-  background-color: #de985d;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-  z-index: 100;
-}
-
-/* Moves the menu into view when activated */
-#menu-toggle.active + .menu {
-  transform: translateX(400px);
-}
-
-#menu-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: black;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.2em;
-}
-
-.menu-close:hover {
-  background-color: white;
-  color: black;
-}
-
-.menu-close:active {
-  background-color: white;
-  color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+#menu-toggle:active, #menu-Close:active {
+  transform: translate(0px, 5px);
+  
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-
   .sidebarAdmin {
     padding: 0;
   }
@@ -251,12 +201,8 @@ html {
     padding: 0;
   }
 
-  .headAndCon {
+  #headAndCon {
     width: 100%;
-  }
-
-  .userInfo {
-    display: none;
   }
 
   .header h1 {
@@ -264,6 +210,14 @@ html {
   }
 
   #menu-toggle {
+    display: inline;
+  }
+
+  #sidebar {
+    width: 0%;
+  }
+
+  #menu-Close {
     display: inline;
   }
 }

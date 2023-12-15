@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-include("../dbConn.php");
-
 if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     ?>
 
@@ -12,87 +10,56 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Search</title>
+        <title>About</title>
         <link rel="stylesheet" href="../style.css">
         <link rel="shortcut icon" href="../Images/messageHubIcon.png" type="image/x-icon">
         <style>
             .Crt {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .about {
                 background-color: white;
-                width: 40%;
                 padding: 2rem;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 gap: 1rem;
                 border-radius: 0.25em;
                 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
             }
 
-            .Crt form {
+            .about p {
+                font-size: larger;
+            }
+
+            .creators {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+
+            .creator {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
                 display: flex;
                 flex-direction: column;
+                width: 45%;
+                background-color: white;
+                border-radius: 0.25em;
+                text-align: center;
                 gap: 1rem;
+            }
+
+            .creator img {
                 width: 100%;
-            }
+                max-height: 250px;
+            } 
 
-            input[type="text"],
-            input[type="password"] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                box-sizing: border-box;
-                outline: none;
-                border: 2px solid transparent;
-                border-radius: 24px;
-                font-size: 1rem;
-                background-color: gainsboro;
-            }
-
-            input[type="text"]:focus,
-            input[type="password"]:focus {
-                border: 2px rgb(222, 152, 93) solid;
-            }
-
-            .Btns {
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-            }
-
-            .Btns input {
-                background: white;
-                color: #de985d;
-                border-style: solid;
-                border-color: #de985d;
-                height: 50px;
-                width: 100px;
-                text-shadow: none;
-                transition: 0.3s ease-in-out;
-            }
-
-            .Btns input:hover {
-                background-color: #de985d;
-                color: white;
-                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            }
-
-            .Btns input:active {
-                transform: translate(0px, 10px);
-            }
-
-            .error {
-                background-color: #F2DEDE;
-                color: #A94442;
-                padding: 10px;
-                width: 95%;
-                border-radius: 5px;
-            }
-
-            @media screen and (max-width: 768px) {
-                .Crt {
-                    width: auto;
-                }
+            .creator h4{
+                color: gray;
+                padding-bottom: 1rem;
             }
         </style>
     </head>
@@ -101,35 +68,54 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
         <div class="crt">
             <div id="headAndCon">
                 <div class="header">
-                <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
 
                     <a href="message.php" class="logoLink"><img src="../Images/MessagehubBlack.png" alt=""
                             width="100px"></a>
 
-                    <h1>Message Search</h1>
+                    <h1>About</h1>
                 </div>
 
                 <div class="content">
                     <div class="Crt">
-                        <h1>Message Search</h1>
 
-                        <?php if (isset($_GET['error'])) { ?>
-                            <p class="error">
-                                <?php echo $_GET['error']; ?>
-                            </p>
-                        <?php } ?>
+                        <div class="about">
+                            <h1>About</h1>
 
-                        <form action="searchPro.php" method="post">
-                            <input type="text" placeholder="Search" name="search" />
+                            <p>
+                                Welcome to MessageHub, your dedicated partner in efficient communication and streamlined
+                                administration. At MessageHub, we understand the pivotal role that clear and concise
+                                administrative messages play in the seamless functioning of any organization. Our mission is
+                                to empower businesses with a robust platform that simplifies the process of crafting,
+                                disseminating, and tracking administrative messages. From important announcements to policy
+                                updates, our user-friendly interface ensures that your messages reach the right recipients
+                                promptly. We prioritize security and customization, offering a range of features to tailor
+                                your messages to the unique needs of your organization. With MessageHub, you can enhance
+                                internal communication, boost productivity, and keep your team informed. Join us in
+                                revolutionizing the way you manage administrative messages, making communication a strength
+                                rather than a challenge.</p>
+                        </div>
 
-                            <div class="Btns">
-                                <input type="submit" value="Search">
-                                <input type="reset" value="Clear">
+                        <div class="creators">
+                            <div class="creator">
+                                <img src="../Images/matt.jpg">
+
+                                <h2>Matthew Ward #0132075</h2>
+
+                                <h4>co-founder</h4>
+
                             </div>
-                        </form>
+
+                            <div class="creator">
+                                <img src="../Images/garth.jpg">
+
+                                <h2>Garth Frederiksen #0161006</h2>
+
+                                <h4>co-founder</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
             <div id="sidebar">
@@ -189,7 +175,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                     Message Search
                     </a>
 
-                    <a href='deleteNotice.php' class='sidebarLink'>
+                    <a href='delete.php' class='sidebarLink'>
                     <img class='menuIcon' src='../Images/trash.svg' alt='trash'>
                     Delete Notice
                     </a>

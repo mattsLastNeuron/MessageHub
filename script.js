@@ -1,28 +1,60 @@
-//code to get the menu open and close button.
-const menuToggle = document.getElementById('menu-toggle');
-const menuClose = document.getElementById('menu-close');
+var sidebar = document.getElementById("sidebar");
+var main = document.getElementById("headAndCon");
+var elementStyle = window.getComputedStyle(sidebar);
+var width = parseFloat(elementStyle.getPropertyValue("width"));
+var screenWidth =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
 
-//Event listeners used to open and close the menu on click.
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-});
+function toggleSidebar() {
+  var elementStyle = window.getComputedStyle(sidebar);
+  var width = parseFloat(elementStyle.getPropertyValue("width"));
+  var screenWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
-menuClose.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-});
-
-function updateDivVisibility() {
-    if (window.innerWidth > 768) { 
-        document.querySelector('.menu').style.display = "none";
+  if (screenWidth <= 768) {
+    if (width == 0) {
+      sidebar.style.width = "100%";
+      main.style.width = "0%";
     } else {
-        document.querySelector('.menu').style.display = "flex";
+      sidebar.style.width = "0%";
+      main.style.width = "100%";
     }
+  } else if (width > 0) {
+    sidebar.style.width = "0%";
+    main.style.width = "100%";
+  } else {
+    sidebar.style.width = "20%";
+    main.style.width = "80%";
+  }
 }
 
-// Initial check on page load
-document.addEventListener('DOMContentLoaded', updateDivVisibility);
+function handleResize() {
+  var screenWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
-// Listen for window resize events
-window.addEventListener('resize', updateDivVisibility);
+  if (screenWidth <= 768) {
+    sidebar.style.width = "0%";
+    main.style.width = "100%";
+  } else {
+    sidebar.style.width = "20%";
+    main.style.width = "80%";
+  }
+}
 
+// Add event listener for the resize event
+window.addEventListener("resize", handleResize);
 
+// Initial call to set up initial screen size
+handleResize();
+
+function loadMenu() {
+  document.getElementById("sidebar").style.display = "flex";
+}
+
+document.addEventListener("DOMContentLoaded", loadMenu);
