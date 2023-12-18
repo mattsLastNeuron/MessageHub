@@ -178,7 +178,7 @@ if (isset($_SESSION["ID"]) && isset($_SESSION["UserName"])) {
                     Message Search
                     </a>
 
-                    <a href='delete.php' class='sidebarLink'>
+                    <a href='deleteNotice.php' class='sidebarLink'>
                     <img class='menuIcon' src='../Images/trash.svg' alt='trash'>
                     Delete Notice
                     </a>

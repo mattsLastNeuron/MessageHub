@@ -154,6 +154,15 @@
       border-radius: 5px;
     }
 
+
+    .pass {
+      background-color: #def2de;
+      color: #42a944;
+      padding: 10px;
+      width: 95%;
+      border-radius: 5px;
+    }
+
     .checkbox-wrapper-46 input[type="checkbox"] {
       display: none;
       visibility: hidden;
@@ -295,6 +304,11 @@
       <?php if (isset($_GET['error'])) { ?>
         <p class="error">
           <?php echo $_GET['error']; ?>
+        </p>
+      <?php } ?>
+      <?php if (isset($_GET['pass'])) { ?>
+        <p class="pass">
+          <?php echo $_GET['pass']; ?>
         </p>
       <?php } ?>
 

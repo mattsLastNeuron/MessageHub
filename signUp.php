@@ -69,12 +69,12 @@
             }
 
             100% {
-                transform: translateY(537.5px);
+                transform: translateY(550px);
             }
         }
 
         form {
-            width: 350px;
+            width: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -90,6 +90,16 @@
             justify-content: center;
             align-items: center;
             padding: 20px 20px 20px 20px;
+        }
+
+        .inputCrt {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
         }
 
         input[type="text"],
@@ -360,29 +370,35 @@
             <div class="registerForm">
                 <form action="signUpPro.php" method="post">
                     <div class="formCrt">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" />
+                        <div class="inputCrt">
+                            <div class="col">
+                                <label for="uname"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" />
 
-                        <label for="position" style="font-weight: bold">Select Position</label>
-                        <select name="position" id="position" required>
-                            <option value="" disabled selected>--Select Position--</option>
-                            <option value="admin">Admin</option>
-                            <option value="staff">Staff</option>
-                        </select>
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" id="password" />
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" id="password" />
+                                <div class="checkbox-wrapper-46">
+                                    <input class="inp-cbx" id="cbx-46" type="checkbox" onclick="showPass()" />
+                                    <label class="cbx" for="cbx-46"><span>
+                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg></span><span>Show Password</span>
+                                    </label>
+                                </div>
+                            </div>
 
-                        <label for="psw"><b>Confirm Password</b></label>
-                        <input type="password" placeholder="Re-enter Password" name="repsw" id="rePassword" />
+                            <div class="col">
+                            <label for="position" style="font-weight: bold">Select Position</label>
+                                <select name="position" id="position" required>
+                                    <option value="" disabled selected>--Select Position--</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="staff">Staff</option>
+                                </select>
 
-                        <div class="checkbox-wrapper-46">
-                            <input class="inp-cbx" id="cbx-46" type="checkbox" onclick="showPass()" />
-                            <label class="cbx" for="cbx-46"><span>
-                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                    </svg></span><span>Show Password</span>
-                            </label>
+                                <label for="psw"><b>Confirm Password</b></label>
+                                <input type="password" placeholder="Re-enter Password" name="repsw" id="rePassword" />
+                            </div>
                         </div>
 
                         <a href="index.php" class="signup">
