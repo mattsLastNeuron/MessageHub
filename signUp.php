@@ -349,6 +349,24 @@
             .popup {
                 width: auto;
             }
+
+            .inputCrt {
+                display: block;
+            }
+
+            @keyframes drop {
+            0% {
+                opacity: 0;
+            }
+
+            70% {
+                transform: translateY(700px);
+            }
+
+            100% {
+                transform: translateY(537.5px);
+            }
+        }
         }
     </style>
 </head>
